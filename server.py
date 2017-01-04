@@ -55,7 +55,7 @@ if __name__ == '__main__':
 	app = tornado.web.Application(
 		handlers=[
 			(r"/", IndexHandler),
-			(r'/static/(.*)', web.StaticFileHandler, {'path': static_dir}),
+			(r'/static/(.*)', tornado.web.StaticFileHandler, {'path': static_dir}),
 			(r"/ws", WebSocketHandler)
 		]
 	)
