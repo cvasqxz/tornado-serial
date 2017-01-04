@@ -17,7 +17,6 @@ class WebSocketHandler(websocket.WebSocketHandler):
 	def open(self):
 		print 'new connection'
 		clients.append(self)
-		self.write_message("connected")
  
 	def on_close(self):
 		print 'connection closed'
