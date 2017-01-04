@@ -6,17 +6,19 @@ import os
 class Handler(websocket.WebSocketHandler):
     def open(self):
         print 'user conectado'
-
+        #CREACION DE SOCKET (CALCETA)
         self.calceta = Serial('/dev/ttyACM0',9600, timeout=0)
 
+        #ENVIAR MENSAJE SERIAL RECIBIDO POR WEBSOCKET
         while True:
             msg = self.calceta.readline()
 
-            if len(msg) > 2:
-                print 'msg (' + str(len(msg)) + '): ' + msg
+            #COMPROBACION DE MENSAJE CORRECTO (EDITAR DESPUES)
+            if len(msg) > 0:
                 self.write_message(msg)
 
     def on_close(self):
+        #CIERRE DE COMUNICACION SERIAL CUANDO SE CIERRE LA PAGINA
         self.calceta.close()
         print '> desconectado'
 
