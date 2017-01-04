@@ -61,8 +61,8 @@ if __name__ == '__main__':
 	)
 	httpServer = tornado.httpserver.HTTPServer(app)
 	httpServer.listen(80)
-	print "Listening on port:", options.port
-
+	print "Listening on port: 80"
+	
 	mainLoop = tornado.ioloop.IOLoop.instance()
 	## adjust the scheduler_interval according to the frames sent by the serial port
 	scheduler_interval = 100
