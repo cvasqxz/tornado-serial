@@ -5,13 +5,15 @@ function cero(i) {
     return i;
 }
 
-
 var grafo = Morris.Line({
 element: 'grafo',
 	data: ret,
 	xkey: 'y',
 	ykeys: ['a'],
 	hideHover: 'auto',
+	lineColors: ['#FF3300'],
+	linewidth: '3px',
+	pointSize: '3px',
 	labels: ['Sensor'],
 	dateFormat: function(date) {
 		d = new Date(date);
