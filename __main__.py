@@ -4,11 +4,9 @@ import os
 import time
 import multiprocessing
 import serialworker
-import json
 
 clients = [] 
 
-input_queue = multiprocessing.Queue()
 output_queue = multiprocessing.Queue()
  
 class IndexHandler(web.RequestHandler):
@@ -20,11 +18,6 @@ class WebSocketHandler(websocket.WebSocketHandler):
 		print 'new connection'
 		clients.append(self)
 		self.write_message("connected")
- 
-	def on_message(self, message):
-		print 'tornado received from client: %s' % json.dumps(message)
-		#self.write_message('ack')
-		input_queue.put(message)
  
 	def on_close(self):
 		print 'connection closed'
@@ -41,7 +34,7 @@ def checkQueue():
 
 if __name__ == '__main__':
 	## start the serial worker in background (as a deamon)
-	sp = serialworker.SerialProcess(input_queue, output_queue)
+	sp = serialworker.SerialProcess(output_queue)
 	sp.daemon = True
 	sp.start()
 	options.parse_command_line()
