@@ -2,8 +2,7 @@
 calceta = new WebSocket('ws://raspberrypi/ws');
 
 var ret = [];
-var i = 2000;
-ret.push({a: 20, y: i,});
+var i = 0;
 
 //RECEPCION DE DATA
 calceta.onmessage = function(msg){
