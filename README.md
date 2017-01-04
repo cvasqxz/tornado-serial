@@ -9,4 +9,4 @@ Lectura serial a traves de tornado y un websocket
 **ejecucion de codigo:** sudo python ./tornado-serial
 
 ##Visualizacion:
-Entra a https://raspberrypi/ (o a la direccion ip de la raspberry dentro de la red local)
+Entra a https://raspberrypi (o a la direccion ip de la raspberry dentro de la red local)
