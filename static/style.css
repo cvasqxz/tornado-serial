@@ -1,6 +1,5 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
     color: #3C344F;
     background: #F0EFD8;
 }
@@ -10,8 +9,21 @@ body {
 	src: url('Montserrat-Regular.ttf');
 }
 
+#out {
+	    font-size: 30px;
+}
+
 b {
 	color: #FF3300;
+	font-weight: bolder;
+}
+
+#grafo {
+	width: 80%;
+	height: 50%;
+	position: absolute;
+	left: 10%;
+	top: 25%;
 	font-weight: bolder;
 }
 
