@@ -10,7 +10,7 @@ class Handler(websocket.WebSocketHandler):
         self.calceta = Serial('/dev/ttyAMA0',9600, timeout=0)
 
         while True:
-            msg = calceta.readline()
+            msg = self.calceta.readline()
 
             if len(msg) > 0:
                 self.write_message(msg)
