@@ -49,7 +49,9 @@ if __name__ == '__main__':
 	sp.daemon = True
 	sp.start()
 	tornado.options.parse_command_line()
-    static_dir = os.path.join(os.path.dirname(__file__), 'static')
+	
+	static_dir = os.path.join(os.path.dirname(__file__), 'static')
+	
 	app = tornado.web.Application(
 	    handlers=[
 	        (r"/", IndexHandler),
