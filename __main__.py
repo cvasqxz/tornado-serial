@@ -7,7 +7,7 @@ class Handler(websocket.WebSocketHandler):
     def open(self):
         print "user conectado"
 
-        self.calceta = Serial('/dev/ttyAMA0',9600, timeout=0)
+        self.calceta = Serial('/dev/ttyACM0',9600, timeout=0)
         self.write_message(u"hola")
 
         while True:
