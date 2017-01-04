@@ -12,7 +12,7 @@ class Handler(websocket.WebSocketHandler):
         while True:
             msg = self.calceta.readline()
 
-            if len(msg) > 0:
+            if len(msg) > 2:
                 print 'msg (' + str(len(msg)) + '): ' + msg
                 self.write_message(msg)
 
