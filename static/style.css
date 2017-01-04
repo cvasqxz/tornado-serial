@@ -10,6 +10,10 @@ body {
 	src: url('Montserrat-Regular.ttf');
 }
 
+b {
+	color: #FF3300;
+	font-weight: bolder;
+}
 
 a:link {text-decoration: none; }
 a:active {text-decoration: none; }
