@@ -1,6 +1,11 @@
-calceta = new WebSocket('ws://raspberrypi/websocket');
+//CREACION DE WEBSOCKET
+calceta = new WebSocket('ws://localhost/websocket');
 
+//RECEPCION DE DATA
 calceta.onmessage = function(msg){
-	var buffer = $('#out').html();
-    $('#out').html(buffer + '<br>Mensaje recibido: ' + msg.data);
+    $('#out').html('Mensaje recibido: ' + msg.data);
 }
+
+//ENVIO DE PETICION DE DATA CADA 1 SEGUNDO
+var timer = setInterval(refresh, 1000);
+function refresh(){ calceta.send("ok"); }
