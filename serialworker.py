@@ -8,7 +8,7 @@ class SerialProcess(multiprocessing.Process):
         multiprocessing.Process.__init__(self)
         self.input_queue = input_queue
         self.output_queue = output_queue
-        self.sp = serial.Serial('/tty/ACM0', 9600)
+        self.sp = serial.Serial('/dev/ttyACM0', 9600)
  
     def close(self):
         self.sp.close()
