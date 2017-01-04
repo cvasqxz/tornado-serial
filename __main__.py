@@ -1,25 +1,21 @@
-import tornado.httpserver
-import tornado.ioloop
-import tornado.web
-import tornado.websocket
-import tornado.gen
+from tornado import httpserver, ioloop, web, websocket, gen
 from tornado.options import define, options
 import os
 import time
 import multiprocessing
 import serialworker
 import json
- 
+
 clients = [] 
 
 input_queue = multiprocessing.Queue()
 output_queue = multiprocessing.Queue()
  
-class IndexHandler(tornado.web.RequestHandler):
+class IndexHandler(web.RequestHandler):
 	def get(self):
 		self.render('template.html')
  
-class WebSocketHandler(tornado.websocket.WebSocketHandler):
+class WebSocketHandler(websocket.WebSocketHandler):
 	def open(self):
 		print 'new connection'
 		clients.append(self)
@@ -48,24 +44,24 @@ if __name__ == '__main__':
 	sp = serialworker.SerialProcess(input_queue, output_queue)
 	sp.daemon = True
 	sp.start()
-	tornado.options.parse_command_line()
+	options.parse_command_line()
 	
 	static_dir = os.path.join(os.path.dirname(__file__), 'static')
 	
-	app = tornado.web.Application(
+	app = web.Application(
 		handlers=[
 			(r"/", IndexHandler),
-			(r'/static/(.*)', tornado.web.StaticFileHandler, {'path': static_dir}),
+			(r'/static/(.*)', web.StaticFileHandler, {'path': static_dir}),
 			(r"/ws", WebSocketHandler)
 		]
 	)
-	httpServer = tornado.httpserver.HTTPServer(app)
+	httpServer = httpserver.HTTPServer(app)
 	httpServer.listen(80)
 	print "Listening on port: 80"
-	
-	mainLoop = tornado.ioloop.IOLoop.instance()
+
+	mainLoop = ioloop.IOLoop.instance()
 	## adjust the scheduler_interval according to the frames sent by the serial port
 	scheduler_interval = 100
-	scheduler = tornado.ioloop.PeriodicCallback(checkQueue, scheduler_interval, io_loop = mainLoop)
+	scheduler = ioloop.PeriodicCallback(checkQueue, scheduler_interval, io_loop = mainLoop)
 	scheduler.start()
 	mainLoop.start()

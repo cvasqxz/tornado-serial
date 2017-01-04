@@ -1,11 +1,11 @@
 import serial
 import time
-import multiprocessing
+from multiprocessing import Process
 
-class SerialProcess(multiprocessing.Process):
+class SerialProcess(Process):
  
     def __init__(self, input_queue, output_queue):
-        multiprocessing.Process.__init__(self)
+        Process.__init__(self)
         self.input_queue = input_queue
         self.output_queue = output_queue
         self.sp = serial.Serial('/dev/ttyACM0', 9600)
