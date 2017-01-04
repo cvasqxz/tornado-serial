@@ -16,23 +16,23 @@ input_queue = multiprocessing.Queue()
 output_queue = multiprocessing.Queue()
  
 class IndexHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render('template.html')
+	def get(self):
+		self.render('template.html')
  
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
-    def open(self):
-        print 'new connection'
-        clients.append(self)
-        self.write_message("connected")
+	def open(self):
+		print 'new connection'
+		clients.append(self)
+		self.write_message("connected")
  
-    def on_message(self, message):
-        print 'tornado received from client: %s' % json.dumps(message)
-        #self.write_message('ack')
-        input_queue.put(message)
+	def on_message(self, message):
+		print 'tornado received from client: %s' % json.dumps(message)
+		#self.write_message('ack')
+		input_queue.put(message)
  
-    def on_close(self):
-        print 'connection closed'
-        clients.remove(self)
+	def on_close(self):
+		print 'connection closed'
+		clients.remove(self)
 
 
 ## check the queue for pending messages, and rely that to all connected clients
@@ -53,11 +53,11 @@ if __name__ == '__main__':
 	static_dir = os.path.join(os.path.dirname(__file__), 'static')
 	
 	app = tornado.web.Application(
-	    handlers=[
-	        (r"/", IndexHandler),
-            (r'/static/(.*)', web.StaticFileHandler, {'path': static_dir}),
-	        (r"/ws", WebSocketHandler)
-	    ]
+		handlers=[
+			(r"/", IndexHandler),
+			(r'/static/(.*)', web.StaticFileHandler, {'path': static_dir}),
+			(r"/ws", WebSocketHandler)
+		]
 	)
 	httpServer = tornado.httpserver.HTTPServer(app)
 	httpServer.listen(80)
