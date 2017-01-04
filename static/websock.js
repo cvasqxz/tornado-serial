@@ -1,5 +1,6 @@
 calceta = new WebSocket('ws://raspberrypi/websocket');
 
 calceta.onmessage = function(msg){
-    $('#out').html(msg.data);
+	var buffer = $( "div.out").text();
+    $('#out').html(buffer + '<br>' + msg.data);
 }

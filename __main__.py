@@ -5,16 +5,15 @@ import os
 #HANDLER DEL WEBSOCKET
 class Handler(websocket.WebSocketHandler):
     def open(self):
-        print "user conectado"
+        print 'user conectado'
 
         self.calceta = Serial('/dev/ttyACM0',9600, timeout=0)
-        self.write_message(u"hola")
 
         while True:
             msg = self.calceta.readline()
 
             if len(msg) > 0:
-                print "msg: " + msg
+                print 'msg (' + len(msg) + '): ' + msg
                 self.write_message(msg)
 
     def on_close(self):
