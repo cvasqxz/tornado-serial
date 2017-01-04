@@ -12,15 +12,15 @@ if __name__ == '__main__':
     ioloop.IOLoop.instance().start()
 
     class Handler(websocket.WebSocketHandler):
-    def open(self):
-        self.calceta = Serial('/dev/ttyAMA0',9600, timeout=0)
+        def open(self):
+            self.calceta = Serial('/dev/ttyAMA0',9600, timeout=0)
 
-    def on_message(self, message):
-        print self.calceta.readline()
+        def on_message(self, message):
+            print self.calceta.readline()
 
-    def on_close(self):
-        self.calceta.close()
-        print '> desconectado'
+        def on_close(self):
+            self.calceta.close()
+            print '> desconectado'
 
 class Main(web.RequestHandler):
     def get(self):
