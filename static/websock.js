@@ -6,14 +6,16 @@ var buff_b = [];
 
 //RECEPCION DE DATA
 calceta.onmessage = function(msg){
-    $('#out').html('Último mensaje recibido: <b>' + msg.data + '</b>');
+    $('#out').html('Último mensaje recibido: <b>' + msg.data.substring(2) + '</b>');
 
     if (str.indexOf("A") == 0){
-    	buff_a.push({a: msg.data, y: (new Date).getTime(),});
+    	buff_a.push({a: msg.data.substring(2), y: (new Date).getTime(),});
+    	console.log(msg.data.substring(2));
     }
 
     if (str.indexOf("B") == 0){
-    	buff_b.push({a: msg.data, y: (new Date).getTime(),});
+    	buff_b.push({a: msg.data.substring(2), y: (new Date).getTime(),});
+    	console.log(msg.data.substring(2));
     }
     
 }
