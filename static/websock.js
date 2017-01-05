@@ -8,12 +8,12 @@ var buff_b = [];
 calceta.onmessage = function(msg){
     $('#out').html('Último mensaje recibido: <b>' + msg.data.substring(2) + '</b>');
 
-    if (str.indexOf("A") == 0){
+    if (msg.data.indexOf("A") == 0){
     	buff_a.push({a: msg.data.substring(2), y: (new Date).getTime(),});
     	console.log(msg.data.substring(2));
     }
 
-    if (str.indexOf("B") == 0){
+    if (msg.data..indexOf("B") == 0){
     	buff_b.push({a: msg.data.substring(2), y: (new Date).getTime(),});
     	console.log(msg.data.substring(2));
     }
