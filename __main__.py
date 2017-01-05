@@ -23,7 +23,6 @@ class WebSocketHandler(websocket.WebSocketHandler):
 		clients.remove(self)
 
 
-## check the queue for pending messages, and rely that to all connected clients
 def checkQueue():
 	if not output_queue.empty():
 		message = output_queue.get()
@@ -32,7 +31,6 @@ def checkQueue():
 
 
 if __name__ == '__main__':
-	## start the serial worker in background (as a deamon)
 	sp = serialworker.SerialProcess(output_queue)
 	sp.daemon = True
 	sp.start()
@@ -52,7 +50,6 @@ if __name__ == '__main__':
 	print "Listening on port: 80"
 
 	mainLoop = ioloop.IOLoop.instance()
-	## adjust the scheduler_interval according to the frames sent by the serial port
 	scheduler_interval = 100
 	scheduler = ioloop.PeriodicCallback(checkQueue, scheduler_interval, io_loop = mainLoop)
 	scheduler.start()

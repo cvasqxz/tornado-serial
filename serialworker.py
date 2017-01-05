@@ -24,11 +24,9 @@ class SerialProcess(Process):
     	self.sp.flushInput()
  
         while True:
-            # look for incoming serial data
             if (self.sp.inWaiting() > 0):
             	data = self.readSerial()
                 print "reading from serial: " + data
-                # send it back to tornado
             	self.output_queue.put(data)
                 
                 backup = str(int(time())) + " " + data
