@@ -9,8 +9,13 @@ body {
 	src: url('Montserrat-Regular.ttf');
 }
 
+.morris-hover{
+	font-size: 10px;
+	position:absolute;
+	z-index:1000;}
+
 #out {
-	    font-size: 30px;
+	font-size: 30px;
 }
 
 b {
@@ -18,12 +23,23 @@ b {
 	font-weight: bolder;
 }
 
-#grafo {
-	width: 80%;
-	height: 50%;
+#grafoA {
+	text-align: center;
+	width: 50%;
+	height: 80%;
 	position: absolute;
-	left: 10%;
-	top: 25%;
+	left: 0%;
+	top: 10%;
+	font-weight: bolder;
+}
+
+#grafoB {
+	text-align: center;
+	width: 50%;
+	height: 80%;
+	position: absolute;
+	left: 50%;
+	top: 10%;
 	font-weight: bolder;
 }
 
