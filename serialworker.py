@@ -1,5 +1,5 @@
 import serial
-import time
+from time import time
 from multiprocessing import Process
 
 class SerialProcess(Process):
@@ -31,5 +31,6 @@ class SerialProcess(Process):
                 # send it back to tornado
             	self.output_queue.put(data)
                 
-                with open("test.txt", "a+") as myfile:
-                    myfile.write(data)
+                backup = str(int(time())) + " " + data
+                with open("backup_serial.txt", "a+") as myfile:
+                    myfile.write(backup)
