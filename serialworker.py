@@ -30,3 +30,6 @@ class SerialProcess(Process):
                 print "reading from serial: " + data
                 # send it back to tornado
             	self.output_queue.put(data)
+                
+                with open("test.txt", "a+") as myfile:
+                    myfile.write(data)
