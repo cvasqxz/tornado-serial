@@ -13,7 +13,7 @@ calceta.onmessage = function(msg){
     	console.log(msg.data.substring(2));
     }
 
-    if (msg.data..indexOf("B") == 0){
+    if (msg.data.indexOf("B") == 0){
     	buff_b.push({a: msg.data.substring(2), y: (new Date).getTime(),});
     	console.log(msg.data.substring(2));
     }
